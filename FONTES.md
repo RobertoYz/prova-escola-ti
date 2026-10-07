@@ -15,8 +15,8 @@
 > como fonte declarada.
 
 | # | URL | O que foi consultado | Onde aparece no entregável |
-| --- | --- | --- | --- |
-| — | | | |
+| 1 | https://imasters.com.br/php/como-fazer-um-crud-no-laravel-do-zero-parte-1 | alguns comandos para gerar a estrutura do laravel | estrutura do migration, model, controller, etc |
+| 2 | https://imasters.com.br/php/como-fazer-um-crud-no-laravel-do-zero-parte-2 | continuação da explicação anterior | mesma estrutura do laravel/crud |
 
 *(Ex.: `https://docs.oracle.com/...` → sintaxe de `Optional` → `plan.md` na
 seção de decisões. Esse link é ILUSTRATIVO — fora de linha numerada não
@@ -37,8 +37,8 @@ conta. Se nenhum site foi consultado, escreva: **"Nenhum site consultado."**)*
    dúvida, o professor pede o link e pergunta sobre o código.[^plagio]
 
 | # | Link público da conversa | Onde o conteúdo foi usado |
-| --- | --- | --- |
-| — | | |
+| 3 | https://share.gemini.google/1naEQZ3EcJHA | tentei rodar o teste pelo CMD (não deu tempo) |
+
 
 *(Se nenhuma IA foi utilizada, escreva: **"Nenhuma IA utilizada."**)*
 

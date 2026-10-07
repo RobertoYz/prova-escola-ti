@@ -1,31 +1,22 @@
-# TODO (aluno): complete conforme a stack escolhida.
-# Requisitos do contrato (contrato.json, secao exigencias_tecnicas):
-#   - a API deve escutar na porta 8080 DENTRO do container;
-#   - nenhuma variavel de ambiente obrigatoria;
-#   - o build seguido de `docker run -p <PORTA_API>:8080 <imagem>`
-#     deve bastar para a suíte.
-#
-# Exemplos de base (apague o que nao usar):
-#
-# ---- Python/FastAPI ----
-# FROM python:3.12-slim
-# WORKDIR /app
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
-# COPY src/ ./src/
-# EXPOSE 8080
-# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
-#
-# ---- Node/Express ----
-# FROM node:20-alpine
-# WORKDIR /app
-# COPY package*.json ./
-# RUN npm ci --omit=dev
-# COPY src/ ./src/
-# EXPOSE 8080
-# CMD ["node", "src/index.js"]
-#
-# ---- Java/Spring ----
-# (multi-stage: maven build + jre run — veja o track 02 para inspiracao)
+FROM php:8.2-cli
 
-FROM scratch
+RUN apt-get update && apt-get install -y unzip sqlite3 libsqlite3-dev
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+WORKDIR /app
+COPY src/api-prova /app
+COPY variante /app/variante
+
+RUN composer install --no-dev --optimize-autoloader
+RUN cp .env.example .env && php artisan key:generate
+
+RUN mkdir -p /data && touch /data/database.sqlite
+RUN chown -R www-data:www-data /data && chmod -R 775 /data
+
+ENV DB_CONNECTION=sqlite
+ENV DB_DATABASE=/data/database.sqlite
+
+RUN php artisan migrate --force
+
+ENV PHP_CLI_SERVER_WORKERS=4
+CMD ["php", "-S", "0.0.0.0:8080", "server.php"]
