@@ -2,9 +2,9 @@
 
 # ALUNO
 
-Nome: RobertoYz
+Nome: Roberto Yanez Sanz
 
-RA: >>> PREENCHER <<<
+RA: >>> 230794912 <<<
 
 Conta GitHub: @RobertoYz
 
